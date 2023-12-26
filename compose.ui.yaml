@@ -1,0 +1,7 @@
+services:
+  neo4j:
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      RUN_NEO4J_AS_DAEMON: true

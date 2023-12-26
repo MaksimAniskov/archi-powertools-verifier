@@ -1,0 +1,27 @@
+services:
+
+  archi:
+    build: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archi
+    command:
+      - --modelrepository.cloneModel
+      - ${INPUT_GIT_URL}
+      - --modelrepository.userName
+      - ${INPUT_GIT_USER}
+      - --modelrepository.passFile
+      - /usr/var/passwords/${INPUT_GIT_PASSWORD_FILE}
+      - --modelrepository.loadModel
+      - /tmp/archi-model-clone
+      - --saveModel
+      - /usr/var/intermediate_files/model.archimate
+    volumes:
+      - ${INPUT_GIT_PASSWORD_FILES_FOLDER-.}:/usr/var/passwords:ro
+      - intermediate_files:/usr/var/intermediate_files
+
+  archi2csv:
+    depends_on:
+      archi:
+        condition: service_completed_successfully
+    command: python /usr/src/archixml2csv/archixml2csv.py model.archimate
+    volumes:
+      - ./archixml2csv:/usr/src/archixml2csv:ro
+      - intermediate_files:/usr/var/intermediate_files
