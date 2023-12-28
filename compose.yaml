@@ -1,7 +1,6 @@
 services:
 
   archi2csv:
-    image: python:3.11-slim
     build:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archixml2csv
     command: python /usr/src/archixml2csv.py /usr/var/archimate_models/"${INPUT_ARCHI_FILE-model.archimate}"
