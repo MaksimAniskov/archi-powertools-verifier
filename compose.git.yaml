@@ -2,6 +2,7 @@ services:
 
   archi:
     build: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archi
+    platform: linux/amd64
     command:
       - --modelrepository.cloneModel
       - ${INPUT_GIT_URL}
