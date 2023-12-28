@@ -18,6 +18,7 @@ services:
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
       - ${INPUT_NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
+      - ${INPUT_NEO4J_ADDITIONAL_DATA_FOLDER-./additional_data}:/var/lib/neo4j/import/additional_data
 
 volumes:
   intermediate_files: {}
