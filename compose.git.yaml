@@ -1,7 +1,8 @@
 services:
 
   archi:
-    build: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archi
+    build:
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archi
     platform: linux/amd64
     command:
       - --modelrepository.cloneModel

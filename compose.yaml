@@ -2,10 +2,11 @@ services:
 
   archi2csv:
     image: python:3.11-slim
-    command: python /usr/src/archixml2csv/archixml2csv.py /usr/var/archimate_models/"${INPUT_ARCHI_FILE-model.archimate}"
+    build:
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archixml2csv
+    command: python /usr/src/archixml2csv.py /usr/var/archimate_models/"${INPUT_ARCHI_FILE-model.archimate}"
     working_dir: /usr/var/intermediate_files
     volumes:
-      - ./archixml2csv:/usr/src/archixml2csv:ro
       - ${INPUT_ARCHI_FOLDER-.}:/usr/var/archimate_models:ro
       - intermediate_files:/usr/var/intermediate_files
 
@@ -13,7 +14,8 @@ services:
     depends_on:
       archi2csv:
         condition: service_completed_successfully
-    build: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/neo4j
+    build:
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
       - ${INPUT_NEO4J_SCRIPTS_FOLDER-verification_scripts}:/usr/var/verification_scripts:ro
