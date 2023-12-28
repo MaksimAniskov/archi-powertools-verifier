@@ -17,7 +17,7 @@ services:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
-      - ${INPUT_NEO4J_SCRIPTS_FOLDER-verification_scripts}:/usr/var/verification_scripts:ro
+      - ${INPUT_NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
 
 volumes:
   intermediate_files: {}
