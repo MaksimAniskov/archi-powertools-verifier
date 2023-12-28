@@ -5,6 +5,6 @@ ENV NEO4J_PLUGINS=[\"apoc\"]
 
 COPY archi-verifier.sh archi-verifier.sh
 COPY wrapper.sh wrapper.sh
-COPY import-archi-model.cyp import-archi-model.cyp
+COPY import-archi-model.cypher import-archi-model.cypher
 
 ENTRYPOINT ["./wrapper.sh"]
