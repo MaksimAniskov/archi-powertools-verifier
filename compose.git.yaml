@@ -23,6 +23,7 @@ services:
     depends_on:
       archi:
         condition: service_completed_successfully
-    command: python /usr/src/archixml2csv.py model.archimate
+    environment:
+     ARCHI_MODEL_FILE: model.archimate
     volumes:
       - intermediate_files:/usr/var/intermediate_files

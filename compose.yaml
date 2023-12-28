@@ -3,7 +3,8 @@ services:
   archi2csv:
     build:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archixml2csv
-    command: python /usr/src/archixml2csv.py /usr/var/archimate_models/"${INPUT_ARCHI_FILE-model.archimate}"
+    environment:
+      ARCHI_MODEL_FILE: /usr/var/archimate_models/${INPUT_ARCHI_FILE-model.archimate}
     working_dir: /usr/var/intermediate_files
     volumes:
       - ${INPUT_ARCHI_FOLDER-.}:/usr/var/archimate_models:ro
