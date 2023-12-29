@@ -114,6 +114,12 @@ def main():
                 "archimate:", ""
             )
             if type.endswith("Relationship"):
+                specialization = root.find(
+                    './profile[@id="{}"]'.format(e.get("profiles"))
+                )
+                if specialization is not None:
+                    specialization = specialization.get("name")
+
                 csv_writer_relations.writerow(
                     [
                         e.get("id"),
@@ -122,7 +128,7 @@ def main():
                         "",  # TODO: Documentation
                         e.get("source"),
                         e.get("target"),
-                        "",  # TODO: Specialization
+                        specialization,
                     ]
                 )
 
@@ -155,13 +161,20 @@ def main():
                     continue
                 if type == "ArchimateDiagramModel":
                     continue
+
+                specialization = root.find(
+                    './profile[@id="{}"]'.format(e.get("profiles"))
+                )
+                if specialization is not None:
+                    specialization = specialization.get("name")
+
                 csv_writer_elements.writerow(
                     [
                         e.get("id"),
                         type,
                         e.get("name"),
                         "",  # TODO: Documentation
-                        "",  # TODO: Specialization
+                        specialization,
                     ]
                 )
 
