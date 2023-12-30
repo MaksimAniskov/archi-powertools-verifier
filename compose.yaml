@@ -4,10 +4,10 @@ services:
     build:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/archixml2csv
     environment:
-      ARCHI_MODEL_FILE: /usr/var/archimate_models/${INPUT_ARCHI_FILE-model.archimate}
+      ARCHI_MODEL_FILE: /usr/var/archimate_models/${ARCHI_FILE-model.archimate}
     working_dir: /usr/var/intermediate_files
     volumes:
-      - ${INPUT_ARCHI_FOLDER-.}:/usr/var/archimate_models:ro
+      - ${ARCHI_FOLDER-.}:/usr/var/archimate_models:ro
       - intermediate_files:/usr/var/intermediate_files
 
   neo4j:
@@ -18,8 +18,8 @@ services:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
-      - ${INPUT_NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
-      - ${INPUT_NEO4J_ADDITIONAL_DATA_FOLDER-./additional_data}:/var/lib/neo4j/import/additional_data
+      - ${NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
+      - ${NEO4J_ADDITIONAL_DATA_FOLDER-./additional_data}:/var/lib/neo4j/import/additional_data
 
 volumes:
   intermediate_files: {}
