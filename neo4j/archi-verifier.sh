@@ -6,6 +6,6 @@ echo "Importing the Archimate model to Neo4j..."
 cypher-shell -f import-archi-model.cypher
 
 echo "Executing verification scripts..."
-find import/verification_scripts -type f | sort | xargs -L1 -I {} sh -c 'echo "{}"; cypher-shell -f "{}"'
+find import/verification_scripts -type f | sort | xargs -I {} sh -c 'echo "{}"; cypher-shell -f "{}"'
 
 echo "Verification completed"
