@@ -2,7 +2,7 @@ services:
 
   archi2csv:
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/archixml2csv
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/archixml2csv
     environment:
       ARCHI_MODEL_FILE: /usr/var/archimate_models/${INPUT_ARCHI_FILE-model.archimate}
     working_dir: /usr/var/intermediate_files
@@ -15,7 +15,7 @@ services:
       archi2csv:
         condition: service_completed_successfully
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#main:/neo4j
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
       - ${INPUT_NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
