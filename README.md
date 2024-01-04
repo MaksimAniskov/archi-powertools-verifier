@@ -172,7 +172,13 @@ In case you provide any of the non-default YAMLs, you need to include ```-f comp
 
 ```ARCHI_FOLDER``` Default value is ```.``` (current folder)
 <br/>```ARCHI_FILE``` Default value is ```model.archimate```
-<br/>```NEO4J_SCRIPTS_FOLDER``` Default value is ```./verification_scripts```
+<br/>The solution processes model file with this name you provide in this folder. 
+
+```NEO4J_SCRIPTS_FOLDER``` Default value is ```./verification_scripts```
+<br/>The solution runs CQL scripts it finds in this folder.
+<br/>Regardless to the files' extensions, it treats all files in the folder as CQL scripts.
+<br/>The folder can contain subfolders. All subfolders get processed recursively.
+It runs the scripts one by one in alphabetical order of subfolder and file names. 
 
 ```ADDITIONAL_DATA_FOLDER``` Default value is ```./additional_data```
 <br/>Additional data you make available to _Neo4j_ as files in as _import/additional_data_ directory.
