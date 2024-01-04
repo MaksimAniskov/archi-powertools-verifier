@@ -127,7 +127,7 @@ Let's verify whether our model contains correct representation of the buckets.
 ~~~sh
 ARCHI_FOLDER=./examples/aws-resources \
 ARCHI_FILE=model.archimate \
-NEO4J_ADDITIONAL_DATA_FOLDER=./examples/aws-resources/additional_data \
+ADDITIONAL_DATA_FOLDER=./examples/aws-resources/additional_data \
 NEO4J_SCRIPTS_FOLDER=./examples/aws-resources/verification_scripts \
 docker compose run --rm neo4j
 ~~~
