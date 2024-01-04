@@ -181,7 +181,7 @@ In case you provide any of the non-default YAMLs, you need to include ```-f comp
 
 ```GIT_URL``` Maps to  _--modelrepository.cloneModel_ parameter of the Archimate tool's CLI [described here](https://github.com/archimatetool/archi/wiki/Archi-Command-Line-Interface#:~:text=modelrepository).
 <br/>```GIT_USER``` Maps to  _--modelrepository.userName_
-<br/>```GIT_PASSWORD_FILES_FOLDER``` and ```GIT_PASSWORD_FILE`` map to  _--modelrepository.passFile_
+<br/>```GIT_PASSWORD_FILES_FOLDER``` and ```GIT_PASSWORD_FILE``` map to  _--modelrepository.passFile_
 
 There are several ways how you can provide environment variables to your _docker_ command.
 Read this [part of _Docker Compose_'s documentation](https://docs.docker.com/compose/environment-variables/set-environment-variables/)
