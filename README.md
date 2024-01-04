@@ -174,6 +174,9 @@ In case you provide any of the non-default YAMLs, you need to include ```-f comp
 <br/>```ARCHI_FILE``` Default value is ```model.archimate```
 <br/>```NEO4J_SCRIPTS_FOLDER``` Default value is ```./verification_scripts```
 
+```ADDITIONAL_DATA_FOLDER``` Default value is ```./additional_data```
+<br/>Additional data you make available to _Neo4j_ as files in as _import/additional_data_ directory.
+
 (To make ```GIT_*``` variables come to effect, you need to enable support for Git as described above.) 
 
 ```GIT_URL``` Maps to  _--modelrepository.cloneModel_ parameter of the Archimate tool's CLI [described here](https://github.com/archimatetool/archi/wiki/Archi-Command-Line-Interface#:~:text=modelrepository).
