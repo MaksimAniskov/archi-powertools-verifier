@@ -18,7 +18,18 @@ services:
       context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
-      - ${NEO4J_SCRIPTS_FOLDER-./verification_scripts}:/usr/var/verification_scripts:ro
+      - ${NEO4J_SCRIPTS_FOLDER-./verification_scripts_cql}:/usr/var/verification_scripts:ro
+      - ${ADDITIONAL_DATA_FOLDER-./additional_data}:/usr/var/additional_data:ro
+
+  sqlite:
+    depends_on:
+      archi2csv:
+        condition: service_completed_successfully
+    build:
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/sqlite
+    volumes:
+      - intermediate_files:/usr/var/intermediate_files
+      - ${SQLITE_SCRIPTS_FOLDER-./verification_scripts_sql}:/usr/var/verification_scripts:ro
       - ${ADDITIONAL_DATA_FOLDER-./additional_data}:/usr/var/additional_data:ro
 
 volumes:
