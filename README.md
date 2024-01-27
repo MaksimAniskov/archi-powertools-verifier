@@ -242,7 +242,7 @@ Verification completed
 
 This is summary of command line syntax:
 ~~~
-docker compose run [-f compose.yaml [-f compose.ui.yaml] [-f compose.git.yaml]] [--service-ports] --rm sqlite|neo4j
+docker compose [-f compose.yaml [-f compose.ui.yaml] [-f compose.git.yaml]] run [--service-ports] --rm sqlite|neo4j
 ~~~
 
 There are four things you leverage to control how this solution behaves:
@@ -274,11 +274,12 @@ In case you provide any of the non-default YAMLs, you need to include ```-f comp
 [-f compose.yaml [-f compose.ui.yaml] [-f compose.git.yaml] ]
 ```
 
-## Environmant variables
+## Environment variables
 
 ```ARCHI_FOLDER``` Default value is ```.``` (current folder)
 <br/>```ARCHI_FILE``` Default value is ```model.archimate```
-<br/>The solution processes model file with this name you provide in this folder. 
+The solution processes model file with this name you provide in this folder. 
+<br/>```ARCHI_FILE2``` (Optional) The second model for model comparison.
 
 ```SQLITE_SCRIPTS_FOLDER``` Default value is ```./verification_scripts_sql```
 <br/>The solution runs SQL scripts it finds in this folder.

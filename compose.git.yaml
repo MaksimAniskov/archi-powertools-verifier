@@ -2,19 +2,15 @@ services:
 
   archi:
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/archi
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#1.x:/archi
     platform: linux/amd64
-    command:
-      - --modelrepository.cloneModel
-      - ${GIT_URL}
-      - --modelrepository.userName
-      - ${GIT_USER}
-      - --modelrepository.passFile
-      - /usr/var/passwords/${GIT_PASSWORD_FILE}
-      - --modelrepository.loadModel
-      - /tmp/archi-model-clone
-      - --saveModel
-      - /usr/var/intermediate_files/model.archimate
+    environment:
+      GIT_URL:
+      GIT_USER:
+      GIT_PASSWORD_FILE:
+      GIT_URL2:
+      GIT_USER2:
+      GIT_PASSWORD_FILE2:
     volumes:
       - ${GIT_PASSWORD_FILES_FOLDER-.}:/usr/var/passwords:ro
       - intermediate_files:/usr/var/intermediate_files
@@ -24,6 +20,7 @@ services:
       archi:
         condition: service_completed_successfully
     environment:
-     ARCHI_MODEL_FILE: model.archimate
+      MODELS_FOLDER: /usr/var/intermediate_files
+      ARCHI_FILE2: model2.archimate
     volumes:
       - intermediate_files:/usr/var/intermediate_files

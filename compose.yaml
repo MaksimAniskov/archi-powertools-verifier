@@ -2,9 +2,11 @@ services:
 
   archi2csv:
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/archixml2csv
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#1.x:/archixml2csv
     environment:
-      ARCHI_MODEL_FILE: /usr/var/archimate_models/${ARCHI_FILE-model.archimate}
+      ARCHI_FILE:
+      ARCHI_FILE2:
+      MODELS_FOLDER: /usr/var/archimate_models
     working_dir: /usr/var/intermediate_files
     volumes:
       - ${ARCHI_FOLDER-.}:/usr/var/archimate_models:ro
@@ -15,7 +17,7 @@ services:
       archi2csv:
         condition: service_completed_successfully
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/neo4j
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#1.x:/neo4j
     volumes:
       - intermediate_files:/var/lib/neo4j/import/intermediate_files
       - ${NEO4J_SCRIPTS_FOLDER-./verification_scripts_cql}:/usr/var/verification_scripts:ro
@@ -26,7 +28,7 @@ services:
       archi2csv:
         condition: service_completed_successfully
     build:
-      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#0.x:/sqlite
+      context: https://github.com/MaksimAniskov/archi-powertools-verifier.git#1.x:/sqlite
     volumes:
       - intermediate_files:/usr/var/intermediate_files
       - ${SQLITE_SCRIPTS_FOLDER-./verification_scripts_sql}:/usr/var/verification_scripts:ro

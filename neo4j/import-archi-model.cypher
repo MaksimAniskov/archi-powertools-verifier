@@ -10,16 +10,6 @@ MATCH (t:Element{archi_id:line.Target})
 MERGE (s)-[:Relation{archi_id:line.ID, type:replace(line.Type,"Relationship",""), name:line.Name, specialization:line.Specialization}]->(t)
 RETURN count(*) AS `Imported relationships:`;
 
-MATCH (n:Element)
-CALL apoc.create.addLabels( id(n), [ n.type ] )
-YIELD node
-REMOVE node.type;
-
-MATCH ()-[rel:Relation]->()
-CALL apoc.refactor.setType(rel,rel.type)
-YIELD input, output
-REMOVE output.type;
-
 LOAD CSV WITH HEADERS FROM "file:///intermediate_files/views.csv" AS line
 MERGE (:Archi_View{archi_id:line.ID, name:line.Name, documentation:line.Documentation})
 RETURN count(*) AS `Imported views:`;
@@ -57,3 +47,13 @@ MATCH ()-[r{archi_id:line.ID}]->()
 CALL apoc.create.setRelProperty(r, line.Key, line.Value)
 YIELD rel
 RETURN count(*) AS `Imported relationships' properties:`;
+
+MATCH (:Element)-[rel:Relation]->(:Element)
+CALL apoc.refactor.setType(rel,rel.type)
+YIELD input, output
+REMOVE output.type;
+
+MATCH (n:Element)
+CALL apoc.create.addLabels( id(n), [ n.type ] )
+YIELD node
+REMOVE node.type;
