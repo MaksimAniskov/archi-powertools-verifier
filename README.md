@@ -292,6 +292,8 @@ It runs the scripts one by one in alphabetical order of subfolder and file names
 <br/>Regardless to the files' extensions, it treats all files in the folder as CQL scripts.
 <br/>The folder can contain subfolders. All subfolders get processed recursively.
 It runs the scripts one by one in alphabetical order of subfolder and file names. 
+<br/>```NEO4J_VERSION``` Default value is ```5.15```
+<br/>Make Neo4j container run the specified version.
 
 ```ADDITIONAL_DATA_FOLDER``` Default value is ```./additional_data```
 <br/>Additional data you make available to _Neo4j_ as files in as _import/additional_data_ directory.
