@@ -238,6 +238,46 @@ Error!
 Verification completed
 ~~~
 
+## Compare two models
+
+There is [an example](examples/model-federation) which demonstrates detecting discrepancies between two views in two different models.
+
+*[System-A](examples/model-federation/enterprise.archimate)* model has *Default* view in it. 
+And *[Enterprise](examples/model-federation/enterprise.archimate)* model is supposed to have
+its *System A* view equal to *System-A*'s *Default*.
+
+Views equality means that those two views represent same elements and relations between the elements. 
+
+To detect if there any inequality between the views, let's run following command.
+~~~sh
+ARCHI_FOLDER=./examples/model-federation \
+ARCHI_FILE=enterprise.archimate \
+ARCHI_FILE2=system-a.archimate \
+NEO4J_SCRIPTS_FOLDER=./examples/model-federation/verification_scripts_cql \
+NEO4J_VERSION=4.4 \
+COMPOSE_PROJECT_NAME=archi-powertools-verifier-44 \
+docker compose run --rm neo4j
+~~~
+
+> Note: This example runs Neo4j version 4.4 which has support for [apoc.diff.graphs](https://neo4j.com/labs/apoc/4.4/comparing-graphs/graph-difference/) procedure.
+
+This is the output we expect from the verification run:
+~~~
+Executing verification scripts...
+import/verification_scripts/00-compare-views.cypher
+difference, entityType, id, sourceLabel, destLabel, source, dest
+"Destination Entity not found", "Node", 0, "Element", NULL, {}, NULL
+"Destination Entity not found", "Node", 1, "Element", NULL, {}, NULL
+difference, entityType, id, sourceLabel, destLabel, source, dest
+"Destination Entity not found", "Node", 3, "Element", NULL, {}, NULL
+"Destination Entity not found", "Node", 4, "Element", NULL, {}, NULL
+Verification completed
+~~~
+
+Non-empty result of running the verification script means that there are model elements or relations
+that represented differently in those two view of interest.
+> TODO: Make output of the script human-friendly.
+
 # Usage
 
 This is summary of command line syntax:
