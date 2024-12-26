@@ -7,7 +7,7 @@ set -m
 tini -g -- /startup/docker-entrypoint.sh neo4j &
 
 # wait for Neo4j
-wget --tries=20 --waitretry=10 -O /dev/null http://localhost:7474
+wget --retry-connrefused --tries=20 --waitretry=10 -O /dev/null http://localhost:7474
 
 ./archi-verifier.sh
 
