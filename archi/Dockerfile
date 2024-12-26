@@ -3,7 +3,7 @@ WORKDIR /app
 RUN apk add --no-cache \
     wget \
     unzip
-ARG ARCHI_VERSION=5.2.0
+ARG ARCHI_VERSION=5.3.0
 ARG COARCHI_PLUGIN_VERSION=0.9.2
 
 RUN wget -O archi.tgz -q https://www.archimatetool.com/downloads/archi/${ARCHI_VERSION}/Archi-Linux64-${ARCHI_VERSION}.tgz && \
