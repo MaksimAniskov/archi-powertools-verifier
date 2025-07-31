@@ -3,6 +3,7 @@ services:
     ports:
       - "7474:7474"
       - "7687:7687"
+    network_mode: "host"
     environment:
       RUN_NEO4J_AS_DAEMON: true
 
