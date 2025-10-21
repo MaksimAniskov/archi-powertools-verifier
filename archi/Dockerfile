@@ -3,11 +3,9 @@ WORKDIR /app
 RUN apk add --no-cache \
     wget \
     unzip
-ARG ARCHI_MAJOR_VERSION=5.6
-ARG ARCHI_VERSION=5.6.0
+ARG ARCHI_VERSION=5.7.0
 ARG COARCHI_PLUGIN_VERSION=0.9.4
-
-RUN wget -O archi.tgz -q https://www.archimatetool.com/downloads/archi/${ARCHI_MAJOR_VERSION}/Archi-Linux64-${ARCHI_VERSION}.tgz && \
+RUN wget -O archi.tgz -q https://github.com/archimatetool/archi.io/releases/download/${ARCHI_VERSION}/Archi-Linux64-${ARCHI_VERSION}.tgz && \
     wget -O coarchi.archiplugin -q https://www.archimatetool.com/downloads/coarchi/coArchi_${COARCHI_PLUGIN_VERSION}.archiplugin && \
     tar xf archi.tgz && \
     unzip -n coarchi.archiplugin -d Archi/plugins && \
